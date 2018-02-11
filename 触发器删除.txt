@@ -1,0 +1,133 @@
+-- create table student(
+--     stu_id int identity(1,1) primary key,
+--     stu_name varchar(10),
+--     stu_gender char(2),
+--     stu_age int
+-- )
+
+-- create trigger trigger_delete_stu--触发器名称(在数据库中的名称必须唯一)
+-- on student
+-- for delete
+-- as
+-- begin
+--  if object_id(N'student_sum',N'U') is null--判断student_sum表是否存在
+--         create table student_sum(
+--     stuid int,stuname VARCHAR(255)
+-- );
+--     insert  into  student_sum select stu_id,stu_name from deleted  --把更新后总的学生数插入到student_sum表中
+-- end
+
+
+-- insert into student(stu_name,stu_gender,stu_age)values('吕布','男',30);
+-- -- select stuCount 学生总人数 from student_sum;    
+-- insert into student(stu_name,stu_gender,stu_age)values('貂蝉','女',30);            
+-- -- select stuCount 学生总人数 from student_sum;
+-- insert into student(stu_name,stu_gender,stu_age)values('曹阿瞒','男',40); 
+
+
+-- delete from student 
+
+-- select * from student_sum
+
+
+
+
+
+
+
+
+
+
+
+
+-- create table student(
+--     stu_id int identity(1,1) primary key,
+--     stu_name varchar(10),
+--     stu_gender varchar(2),
+--     stu_age int
+-- )
+
+
+-- create trigger trigger_delete_stu--触发器名称(在数据库中的名称必须唯一)
+-- on student
+-- for delete
+-- as
+-- begin
+--  if object_id(N'student_sum',N'U') is null--判断student_sum表是否存在
+--         create table student_sum(
+--     stuid int,stuname VARCHAR(255),stugender VARCHAR(255)
+-- );
+--     insert  into  student_sum select stu_id as stuid,stu_name as stugender,stu_gender as stuname  from deleted  --把更新后总的学生数插入到student_sum表中
+-- end
+
+
+==============================================指定对象插入
+
+-- create table student(
+--     stu_id int identity(1,1) primary key,
+--     stu_name varchar(10),
+--     stu_gender varchar(2),
+--     stu_age int
+-- )
+
+
+
+-- create trigger trigger_delete_stu--触发器名称(在数据库中的名称必须唯一)
+-- on student
+-- for delete
+-- as
+-- begin
+--  if object_id(N'student_sum',N'U') is null--判断student_sum表是否存在
+--         create table student_sum(
+--     stuid int,stuname VARCHAR(255),stugender VARCHAR(255)
+-- );
+-- 	declare @stuid INT;
+-- declare @stuname VARCHAR(255);
+-- declare  @stugender VARCHAR(255); 
+--    select @stuid=stu_id,@stugender=stu_name,@stuname=stu_gender  from deleted;
+-- INSERT into   student_sum (stuid,stuname,stugender) VALUES (@stuid,@stuname,@stugender)
+-- end
+-- insert into student(stu_name,stu_gender,stu_age)values('吕布','男',30);
+
+delete from student 
+
+select * from student_sum
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- insert into student(stu_name,stu_gender,stu_age)values('吕布','男',30);
