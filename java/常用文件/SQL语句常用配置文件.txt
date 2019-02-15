@@ -1,0 +1,40 @@
+==============================================²éÑ¯·µ»ØList<Map<Integer,Object>>
+    <resultMap type="HashMap" id="testMap">
+        <result column="user_Id" property="key" />
+        <association property="value" resultMap="BaseResultMap"></association>
+    </resultMap>
+    <select id="getUaMapByTimestamp"  resultMap="testMap">
+        select  iwr.*, iwa.status, iwa.adCode  from imp_work_record iwr, imp_work_appStaffArea iwa where iwr.user_id in
+        <foreach collection="list" open="(" close=")" item="item" separator=",">
+            #{item.userId}
+        </foreach>
+        and substring(iwr.create_time, 1, 7) = #{checkDate, jdbcType=VARCHAR}
+        and iwr.appStaffAreaId = iwa.id
+    </select>
+=================================================================================================================
+
+
+sqlserver ×Ö·û´®·Ö¸îº¯Êý
+IF OBJECT_ID('[dbo].[Fun_String2ToStringArray]') IS NOT NULL 
+    DROP FUNCTION [dbo].[Fun_String2ToStringArray]
+GO
+CREATE FUNCTION [dbo].[Fun_String2ToStringArray](@str NVARCHAR(MAX), @split NVARCHAR(10))
+RETURNS @table TABLE ([item] NVARCHAR(max))
+AS
+BEGIN
+    IF LEN(@split) = 0
+      BEGIN
+        SET @split = N','
+      END
+  
+    DECLARE @xml XML;
+    SET @xml = CONVERT(XML, '<x><![CDATA[' + replace(CONVERT(VARCHAR(MAX), @str), @split, ']]></x><x><![CDATA[') + ']]></x>')
+  
+    INSERT INTO @table
+      SELECT item
+      FROM   (SELECT c.value('text()[1]', 'nvarchar(4000)') [item]
+              FROM   @xml.nodes('/x') t(c)) t
+      WHERE  item IS NOT NULL
+  
+    RETURN
+end
