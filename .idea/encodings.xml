@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/java/sql/触发器删除.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/java/常用文件/SQL语句常用配置文件.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/success.txt" charset="GBK" />
   </component>
 </project>
